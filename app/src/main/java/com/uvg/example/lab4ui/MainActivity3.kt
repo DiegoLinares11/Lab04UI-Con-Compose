@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,14 +20,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,20 +62,61 @@ class MainActivity3 : ComponentActivity() {
 @Composable
 fun settingsView(modifier: Modifier = Modifier){
     Column(
-        modifier = modifier.
-        fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = Color.Gray)
+
 
     ){
-        Spacer(modifier = Modifier.height(16.dp))
         plantillaComponentes(imagenID = R.drawable.profile, texto = "Edit Profile")
         plantillaComponentes(imagenID = R.drawable.addresicon, texto = "Email Adress")
         plantillaComponentes(imagenID = R.drawable.notifications, texto = "Notifications")
         plantillaComponentes(imagenID = R.drawable.privacy, texto = "Privacy")
-        plantillaComponentes(imagenID = R.drawable.help_feedback, texto = "Help & Feedback")
-        plantillaComponentes(imagenID = R.drawable.about, texto = "About")
+        Spacer(modifier = Modifier.height(30.dp))
+        plantillaComponentesConTexto(imagenID = R.drawable.help_feedback, texto = "Help & Feedback", texto2 = "Troubleshooting tips and guides")
+        plantillaComponentesConTexto(imagenID = R.drawable.about, texto = "About", texto2 = "App information and documents")
 
+        TextButton (
+            onClick = {/*Aqui iria lo que hace pero por el momento no es funcional*/},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(35.dp)
+                .background(color = Color.White)
+        ){
+            Text(
+                text = "Logout",
+                color = Color.Red
+            )
+        }
+    }
+}
 
+@Composable
+fun plantillaComponentesConTexto(imagenID: Int, texto: String, texto2: String){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Color.White),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Image(
+            painter = painterResource(id = imagenID),
+            contentDescription = null,
+            modifier = Modifier
+                .size(40.dp)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
 
+        Column (
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = texto)
+
+            Text(
+                text = texto2,
+                color = Color.Gray
+            )
+        }
     }
 }
 
@@ -78,7 +125,7 @@ fun plantillaComponentes(imagenID: Int, texto: String){
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp),
+            .background(color = Color.White),
         verticalAlignment = Alignment.CenterVertically
     ){
         Image(
