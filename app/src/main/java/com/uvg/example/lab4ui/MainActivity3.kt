@@ -76,12 +76,16 @@ fun settingsView(modifier: Modifier = Modifier){
         plantillaComponentesConTexto(imagenID = R.drawable.help_feedback, texto = "Help & Feedback", texto2 = "Troubleshooting tips and guides")
         plantillaComponentesConTexto(imagenID = R.drawable.about, texto = "About", texto2 = "App information and documents")
 
+        Spacer(modifier = Modifier.height(30.dp))
+
         TextButton (
             onClick = {/*Aqui iria lo que hace pero por el momento no es funcional*/},
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(35.dp)
-                .background(color = Color.White)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.textButtonColors(
+                containerColor = Color.White,
+                contentColor = Color.Red
+            )
         ){
             Text(
                 text = "Logout",
