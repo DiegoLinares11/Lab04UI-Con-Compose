@@ -54,8 +54,46 @@ class MainActivity3 : ComponentActivity() {
 }
 
 @Composable
-fun settingsView(modifier: Modifier){
+fun settingsView(modifier: Modifier = Modifier){
+    Column(
+        modifier = modifier.
+        fillMaxSize()
 
+    ){
+        Spacer(modifier = Modifier.height(16.dp))
+        plantillaComponentes(imagenID = R.drawable.profile, texto = "Edit Profile")
+        plantillaComponentes(imagenID = R.drawable.addresicon, texto = "Email Adress")
+        plantillaComponentes(imagenID = R.drawable.notifications, texto = "Notifications")
+        plantillaComponentes(imagenID = R.drawable.privacy, texto = "Privacy")
+        plantillaComponentes(imagenID = R.drawable.help_feedback, texto = "Help & Feedback")
+        plantillaComponentes(imagenID = R.drawable.about, texto = "About")
+
+
+
+    }
+}
+
+@Composable
+fun plantillaComponentes(imagenID: Int, texto: String){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Image(
+            painter = painterResource(id = imagenID),
+            contentDescription = null,
+            modifier = Modifier
+                .size(40.dp)
+        )
+        Spacer(modifier = Modifier.width(6.dp))
+        Text(
+            text = texto,
+            color = Color.Black
+        )
+
+    }
 }
 
 
@@ -73,7 +111,7 @@ fun appTercerVista() {
                             painter = painterResource(id = R.drawable.x),
                             contentDescription = null,
                             modifier = Modifier
-                                .size(24.dp)
+                                .size(20.dp)
                                 .align(Alignment.CenterStart)
                         )
                         Text(
