@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.uvg.example.lab4ui.ui.theme.GrayColor
@@ -68,13 +69,13 @@ fun settingsView(modifier: Modifier = Modifier){
 
 
     ){
-        plantillaComponentes(imagenID = R.drawable.profile, texto = "Edit Profile")
-        plantillaComponentes(imagenID = R.drawable.addresicon, texto = "Email Adress")
-        plantillaComponentes(imagenID = R.drawable.notifications, texto = "Notifications")
-        plantillaComponentes(imagenID = R.drawable.privacy, texto = "Privacy")
+        plantillaComponentes(imagenID = R.drawable.profile, texto = stringResource(id = R.string.edit_profile))
+        plantillaComponentes(imagenID = R.drawable.addresicon, texto = stringResource(id = R.string.email_address))
+        plantillaComponentes(imagenID = R.drawable.notifications, texto = stringResource(id = R.string.notifications))
+        plantillaComponentes(imagenID = R.drawable.privacy, texto = stringResource(id = R.string.privacy))
         Spacer(modifier = Modifier.height(30.dp))
-        plantillaComponentesConTexto(imagenID = R.drawable.help_feedback, texto = "Help & Feedback", texto2 = "Troubleshooting tips and guides")
-        plantillaComponentesConTexto(imagenID = R.drawable.about, texto = "About", texto2 = "App information and documents")
+        plantillaComponentesConTexto(imagenID = R.drawable.help_feedback, texto = stringResource(id = R.string.help_feedback), texto2 = stringResource(id = R.string.troubleshooting_tips))
+        plantillaComponentesConTexto(imagenID = R.drawable.about, texto = stringResource(id = R.string.about), texto2 = stringResource(id = R.string.app_information))
 
         Spacer(modifier = Modifier.height(30.dp))
 
