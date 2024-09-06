@@ -67,7 +67,6 @@ fun settingsView(modifier: Modifier = Modifier){
             .fillMaxSize()
             .background(color = Color.Gray)
 
-
     ){
         plantillaComponentes(imagenID = R.drawable.profile, texto = stringResource(id = R.string.edit_profile))
         plantillaComponentes(imagenID = R.drawable.addresicon, texto = stringResource(id = R.string.email_address))
@@ -167,7 +166,7 @@ fun appTercerVista() {
                                 .align(Alignment.CenterStart)
                         )
                         Text(
-                            text = "Settings",
+                            text = stringResource(id = R.string.settings_title),
                             color = Color.Black,
                             modifier = Modifier.align(Alignment.Center)
                         )

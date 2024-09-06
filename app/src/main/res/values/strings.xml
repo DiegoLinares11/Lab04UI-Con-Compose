@@ -10,4 +10,15 @@
     <string name="troubleshooting_tips">Troubleshooting tips and guides</string>
     <string name="app_information">App information and documents</string>
     <string name="logout">Logout</string>
+
+
+    //Textos de la primer pantalla
+    <string name="DESTACADOS">DESTACADOS</string>
+    <string name="Service_now">Service now</string>
+    <string name="Actualidad_UVG">Actualidad UVG</string>
+    <string name="Servicios_Recursos">SERVICIOS Y RECURSOS</string>
+    <string name="directorioEstudiantiles">Directorio de Servicios Estudiantiles</string>
+    <string name="PortalBiblioUVG">Portal Web Bibliotecas UVG</string>
+    <string name="Campus_Central">Campus Central</string>
+
 </resources>

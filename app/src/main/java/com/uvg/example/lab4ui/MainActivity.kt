@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.uvg.example.lab4ui.ui.theme.GrayColor
@@ -69,7 +70,7 @@ fun imagenesMargen(modifier: Modifier = Modifier){
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        SectionTitle(title = "Destacados")
+        SectionTitle(title = stringResource(id = R.string.DESTACADOS))
         //PRIMER COMPONENTE DE IMAGENES.
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -77,31 +78,31 @@ fun imagenesMargen(modifier: Modifier = Modifier){
         ){
             imagenesCards(
                 imageID = R.drawable.imagenes_galeria_cit_02,
-                title = "Service Now",
+                title = stringResource(id = R.string.Service_now),
                 colorFondo = GreenColor, //Esto es para el verde Lo pase para Theme.kt para usarlos como constantes
                 modifier = Modifier.weight(1f)
             )
             imagenesCards(
                 imageID = R.drawable.zro07729,
-                title = "Actualidad UVG" ,
+                title = stringResource(id = R.string.Actualidad_UVG) ,
                 colorFondo = GrayColor, //GRIS Lo pase para theme.kt para ser usados como constantes.
                 modifier = Modifier.weight(1f)
             )
         }
         //ESTE ES EL SEGUNDO COMPONENTE DE IMAGENES
-        SectionTitle(title = "SERVICIOS Y RECURSOS")
+        SectionTitle(title = stringResource(id = R.string.Servicios_Recursos))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ){
             imagenesCards(
                 imageID = R.drawable.uvg2_1765825cf2,
-                title = "Directorio de Servicios Estudiantiles",
+                title = stringResource(id = R.string.directorioEstudiantiles),
                 colorFondo = GreenColor,
                 modifier = Modifier.weight(1f))
             imagenesCards(
                 imageID = R.drawable.portada_becas_carrera_uvg,
-                title = "Portal Web Bibliotecas UVG",
+                title = stringResource(id = R.string.PortalBiblioUVG),
                 colorFondo = GrayColor,
                 modifier = Modifier.weight(1f))
         }
@@ -173,7 +174,7 @@ fun appConCompose() {
                             .fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ){
-                        Text(text = "Campus Central")
+                        Text(text = stringResource(id = R.string.Campus_Central))
                     }
                 },
                 colors = topAppBarColors(
