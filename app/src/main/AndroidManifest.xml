@@ -23,6 +23,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity2"
+            android:exported="true"
+            android:label="Settings"
+            android:theme="@style/Theme.Lab4UI">
+        </activity>
+
+        <activity
+            android:name=".MainActivity3"
+            android:exported="true"
+            android:label="Settings"
+            android:theme="@style/Theme.Lab4UI">
+        </activity>
+
+        <activity
+            android:name=".MainActivity4"
+            android:exported="true"
+            android:label="Settings"
+            android:theme="@style/Theme.Lab4UI">
+        </activity>
     </application>
 
 </manifest>
