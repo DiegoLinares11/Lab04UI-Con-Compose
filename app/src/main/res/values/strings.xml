@@ -20,7 +20,7 @@
     <string name="directorioEstudiantiles">Directorio de Servicios Estudiantiles</string>
     <string name="PortalBiblioUVG">Portal Web Bibliotecas UVG</string>
     <string name="Campus_Central">Campus Central</string>
-
+  
     //Textos de la segunda pantalla
     <string name="My_profile">My profile</string>
     <string name="My_Campus">My Campus</string>
@@ -47,7 +47,5 @@
         Horario de Atencion: 7:00 a.m a 8:30 p.m
         Campus Central Edificio F, 119-120.
     </string>
-
-
 
 </resources>
