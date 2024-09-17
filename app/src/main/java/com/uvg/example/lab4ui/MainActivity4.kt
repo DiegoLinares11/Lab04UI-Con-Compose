@@ -6,13 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,144 +19,119 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.uvg.example.lab4ui.ui.theme.GrayColor
-import com.uvg.example.lab4ui.ui.theme.GreenColor
+import androidx.compose.ui.unit.sp
 import com.uvg.example.lab4ui.ui.theme.Lab4UITheme
 
-class MainActivity3 : ComponentActivity() {
+class MainActivity4 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             Lab4UITheme {
-                appTercerVista()
+                appCuartaVista()
             }
         }
     }
 }
 
 @Composable
-fun settingsView(modifier: Modifier = Modifier){
+fun emergencyGreed(modifier: Modifier = Modifier){
     Column(
         modifier = modifier
-            .fillMaxSize()
-            .background(color = Color.Gray)
-
+            .fillMaxWidth()
+            .background(color = Color.White)
     ){
-        plantillaComponentes(imagenID = R.drawable.profile, texto = stringResource(id = R.string.edit_profile))
-        plantillaComponentes(imagenID = R.drawable.addresicon, texto = stringResource(id = R.string.email_address))
-        plantillaComponentes(imagenID = R.drawable.notifications, texto = stringResource(id = R.string.notifications))
-        plantillaComponentes(imagenID = R.drawable.privacy, texto = stringResource(id = R.string.privacy))
-        Spacer(modifier = Modifier.height(30.dp))
-        plantillaComponentesConTexto(imagenID = R.drawable.help_feedback, texto = stringResource(id = R.string.help_feedback), texto2 = stringResource(id = R.string.troubleshooting_tips))
-        plantillaComponentesConTexto(imagenID = R.drawable.about, texto = stringResource(id = R.string.about), texto2 = stringResource(id = R.string.app_information))
-
-        Spacer(modifier = Modifier.height(30.dp))
-
-        TextButton (
-            onClick = {/*Aqui iria lo que hace pero por el momento no es funcional*/},
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = ButtonDefaults.textButtonColors(
-                containerColor = Color.White,
-                contentColor = Color.Red
-            )
-        ){
-            Text(
-                text = "Logout",
-                color = Color.Red
-            )
-        }
+        callBox(imageID = R.drawable.warning, title = stringResource(id = R.string.Emergency), text = stringResource(id = R.string.Text1), callText = stringResource(id = R.string.Call_1))
+        callBox(imageID = R.drawable.zro07729, title = stringResource(id = R.string.Clinic), text = stringResource(id = R.string.Text2), callText = stringResource(id = R.string.Call_2))
     }
 }
 
 @Composable
-fun plantillaComponentesConTexto(imagenID: Int, texto: String, texto2: String){
+fun callBox(imageID: Int, title: String, text: String, callText: String){
     Divider(
         color = Color.LightGray,
         thickness = 1.dp,
     )
-    Row(
+    Row (
         modifier = Modifier
             .fillMaxWidth()
+            .padding(bottom = 16.dp)
+            .padding(top = 16.dp)
             .background(color = Color.White),
         verticalAlignment = Alignment.CenterVertically
     ){
         Image(
-            painter = painterResource(id = imagenID),
+            painter = painterResource(id = imageID),
             contentDescription = null,
             modifier = Modifier
-                .size(40.dp)
+                .size(75.dp)
+                .padding(end = 16.dp)
+                .padding(start = 16.dp)
         )
-        Spacer(modifier = Modifier.width(6.dp))
-
-        Column (
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(text = texto)
-
+        Column {
             Text(
-                text = texto2,
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                color = Color.Black
+            )
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray
             )
         }
     }
-}
 
-@Composable
-fun plantillaComponentes(imagenID: Int, texto: String){
-    Divider(
-        color = Color.LightGray,
-        thickness = 1.dp,
-    )
-    Row(
+    Button(
+        onClick = { /*TODO*/ },
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color.White),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(horizontal = 16.dp)
+            .height(50.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF0F9D58),
+            contentColor = Color.White
+        ),
+        shape = RoundedCornerShape(8.dp)
     ){
-        Image(
-            painter = painterResource(id = imagenID),
-            contentDescription = null,
+        Row(
             modifier = Modifier
-                .size(40.dp)
-        )
-        Spacer(modifier = Modifier.width(6.dp))
-        Text(
-            text = texto,
-            color = Color.Black
-        )
+                .fillMaxWidth()
+                .padding(start = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.phone),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = callText,
+                color = Color.White,
+                fontSize = 16.sp
+            )
+        }
 
     }
 }
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun appTercerVista() {
+fun appCuartaVista() {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -175,7 +147,7 @@ fun appTercerVista() {
                                 .align(Alignment.CenterStart)
                         )
                         Text(
-                            text = stringResource(id = R.string.settings_title),
+                            text = stringResource(id = R.string.Emergency_Contacts),
                             color = Color.Black,
                             modifier = Modifier.align(Alignment.Center)
                         )
@@ -188,6 +160,6 @@ fun appTercerVista() {
             )
         }
     ) { padding ->
-        settingsView(modifier = Modifier.padding(padding))
+        emergencyGreed(modifier = Modifier.padding(padding))
     }
 }
