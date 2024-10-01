@@ -17,8 +17,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -26,8 +31,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
@@ -35,6 +42,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.uvg.example.lab4ui.ui.theme.GrayColor
 import com.uvg.example.lab4ui.ui.theme.GreenColor
 import com.uvg.example.lab4ui.ui.theme.Lab4UITheme
@@ -52,9 +64,11 @@ class MainActivity : ComponentActivity() {
 }
 
 
+//val navController = rememberNavController()
+
 //Esto es lo que se vera dentro de la aplicacion:
 @Composable
-fun imagenesMargen(modifier: Modifier = Modifier){
+fun imagenesMargen(modifier: Modifier = Modifier, navController: NavHostController){
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -68,6 +82,11 @@ fun imagenesMargen(modifier: Modifier = Modifier){
                 .height(200.dp),
             contentScale = ContentScale.Crop
         )
+        Button(onClick = { navController.navigate("perfil") }) {
+            Text(
+                text = "Go To Next."
+            )
+        }
         Spacer(modifier = Modifier.height(16.dp))
 
         SectionTitle(title = stringResource(id = R.string.DESTACADOS))
@@ -164,27 +183,68 @@ fun SectionTitle(title: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 //@Preview
 @Composable
-fun appConCompose() {
+fun appConCompose(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
+    // Get current back stack entry
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    // Get the name of the current screen
+    val currentScreen = backStackEntry?.destination?.route ?: "screen1"
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ){
-                        Text(text = stringResource(id = R.string.Campus_Central))
-                    }
-                },
-                colors = topAppBarColors(
-                    containerColor = Color(0xFFFFFF),
-                    titleContentColor = Color.Black // Color del texto
-                )
-            )
+            AppBar(
+                currentScreen,
+                navController.previousBackStackEntry != null,
+                navigateUp = {
+                    navController.navigateUp()
+                })
         }
-    ) { padding ->
-        imagenesMargen(modifier = Modifier.padding(padding))
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "principal",
+            modifier = Modifier.padding(innerPadding)
+        ){
+            composable(route = "principal"){
+                imagenesMargen(navController = navController)
+            }
+            composable(route = "perfil") {
+                profileSection(navController = navController)
+            }
+
+            composable(route = "Settings") {
+                settingsView(navController = navController)
+            }
+            composable (route = "emergencia"){
+                emergencyGreed()
+            }
+        }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppBar(title: String, canNavigateBack: Boolean, navigateUp: () -> Unit = {}, modifier: Modifier = Modifier) {
+    TopAppBar(
+        title = {
+            Text(
+                text = title
+            ) },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        ),
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            }
+        },
+        modifier = modifier
+    )
+}

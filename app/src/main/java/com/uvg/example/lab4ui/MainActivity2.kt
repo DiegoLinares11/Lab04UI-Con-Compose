@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -39,23 +41,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.uvg.example.lab4ui.ui.theme.Lab4UITheme
 
 
-class MainActivity2 : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Lab4UITheme {
-                appSegundaVista()
-            }
-        }
-    }
-}
+
 
 @Composable
-fun profileSection(modifier: Modifier = Modifier){
+fun profileSection(modifier: Modifier = Modifier, navController: NavHostController){
     Column (
         modifier = modifier
             .fillMaxWidth()
@@ -72,7 +65,8 @@ fun profileSection(modifier: Modifier = Modifier){
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp)
-                    .blur(50.dp),
+                    .blur(50.dp)
+                    .clickable { navController.navigate("tercerPantalla") },
                 contentScale = ContentScale.Crop,
             )
             Box(
@@ -94,7 +88,9 @@ fun profileSection(modifier: Modifier = Modifier){
         }
         SectionTitlePrem(title = stringResource(id = R.string.My_Name))
 
+
         Spacer(modifier = Modifier.height(16.dp))
+
 
         plantillaComponentesConTexto(imagenID = R.drawable.graduate, texto = stringResource(id = R.string.My_Campus), texto2 = stringResource(id = R.string.Campus_Central))
         plantillaComponentes(imagenID = R.drawable.friends, texto = stringResource(id = R.string.My_Friends))
@@ -123,40 +119,5 @@ fun SectionTitlePrem(title: String) {
             modifier = Modifier
                 .padding(vertical = 16.dp)
         )
-    }
-}
-//Scaffold para poder estructurar la vista.
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun appSegundaVista(){
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                    ){
-                        Text(
-                            text = stringResource(id = R.string.My_profile),
-                            modifier = Modifier.align(Alignment.Center),
-                            color = Color.Black
-                        )
-                        Image(
-                            painter = painterResource(id = R.drawable.settings),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.CenterEnd)
-                        )
-                    }
-                },
-                colors = topAppBarColors(
-                    containerColor = Color(0xFFFFFF),
-                    titleContentColor = Color.Black // Color del texto
-                )
-            )
-        }
-    ) { padding ->
-        profileSection(modifier = Modifier.padding(padding))
     }
 }

@@ -36,17 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.uvg.example.lab4ui.ui.theme.Lab4UITheme
 
-class MainActivity4 : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Lab4UITheme {
-                appCuartaVista()
-            }
-        }
-    }
-}
+
 
 @Composable
 fun emergencyGreed(modifier: Modifier = Modifier){
@@ -127,39 +117,5 @@ fun callBox(imageID: Int, title: String, text: String, callText: String){
             )
         }
 
-    }
-}
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun appCuartaVista() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Box(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.x),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.CenterStart)
-                        )
-                        Text(
-                            text = stringResource(id = R.string.Emergency_Contacts),
-                            color = Color.Black,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black
-                )
-            )
-        }
-    ) { padding ->
-        emergencyGreed(modifier = Modifier.padding(padding))
     }
 }

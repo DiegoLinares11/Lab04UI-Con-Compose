@@ -45,30 +45,28 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.uvg.example.lab4ui.ui.theme.GrayColor
 import com.uvg.example.lab4ui.ui.theme.GreenColor
 import com.uvg.example.lab4ui.ui.theme.Lab4UITheme
 
-class MainActivity3 : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Lab4UITheme {
-                appTercerVista()
-            }
-        }
-    }
-}
+
 
 @Composable
-fun settingsView(modifier: Modifier = Modifier){
+fun settingsView(modifier: Modifier = Modifier, navController: NavHostController){
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = Color.Gray)
 
     ){
+        Button(onClick = {navController.navigate("emergencia")
+            }){
+                Text(
+                    text = "Ve a emergencias"
+                )
+            }
+
         plantillaComponentes(imagenID = R.drawable.profile, texto = stringResource(id = R.string.edit_profile))
         plantillaComponentes(imagenID = R.drawable.addresicon, texto = stringResource(id = R.string.email_address))
         plantillaComponentes(imagenID = R.drawable.notifications, texto = stringResource(id = R.string.notifications))
@@ -156,38 +154,3 @@ fun plantillaComponentes(imagenID: Int, texto: String){
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun appTercerVista() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Box(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.x),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(20.dp)
-                                .align(Alignment.CenterStart)
-                        )
-                        Text(
-                            text = stringResource(id = R.string.settings_title),
-                            color = Color.Black,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black
-                )
-            )
-        }
-    ) { padding ->
-        settingsView(modifier = Modifier.padding(padding))
-    }
-}
